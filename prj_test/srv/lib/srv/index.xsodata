@@ -1,0 +1,3 @@
+service namespace "prj_test.db" {
+  "prj_test.db::shipment" as "shipment";
+}

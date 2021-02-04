@@ -1,0 +1,5 @@
+COLUMN TABLE "prj_test.db::shipment" (
+    "shipn" INTEGER,
+    "descr" VARCHAR(20),
+    PRIMARY KEY("shipn")
+)

@@ -1,0 +1,29 @@
+{
+  "xsappname": "prj_test",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer1",
+      "description": "Viewer"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer1",
+      "description": "Viewer",
+      "scope-references": [
+        "$XSAPPNAME.Viewer1"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "MYAPPXSJS_Viewer1",
+      "description": "MYAPPXSJS Viewer",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer1"
+      ]
+    }
+  ]
+}
