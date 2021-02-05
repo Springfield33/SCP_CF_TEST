@@ -6,39 +6,53 @@ modules:
 - name: prj_test-db
   type: hdb
   path: db
-  parameters:
-     memory: 128M
-     disk-quota: 256M
   requires:
   - name: prj_test-hdi
+  parameters:
+    disk-quota: 256M
+    memory: 128M
 
 - name: prj_test-srv
   type: nodejs
   path: srv
+  requires:
+  - name: prj_test-hdi
+  - name: prj_test-uaa
+  provides:
+  - name: srv_api
+    properties:
+      url: ${default-url}
   parameters:
     disk-quota: 512M
     memory: 256M
-  provides:
-    - name: srv_api
-      properties:
-        url: ${default-url}
+    
+- name: prj_test
+  type: html5
+  path: app
   requires:
-    - name: prj_test-hdi
-    - name: prj_test-uaa
+  - name: prj_test-uaa
+  - name: srv_api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv
+      url: ~{url}
+  parameters:
+    disk-quota: 512M
+    memory: 256M
 
 resources:
 - name: prj_test-uaa
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
-    service-plan: application
     service: xsuaa
+    service-plan: application
 - name: prj_test-hdi
   type: com.sap.xs.hdi-container
   parameters:
-    service: hanatrial
     config:
       schema: db_test_schema
+    service: hanatrial
   properties:
     hdi-container-name: ${service-name}
-

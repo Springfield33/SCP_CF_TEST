@@ -1,11 +1,12 @@
 const xsjs = require('@sap/xsjs');
 const xsenv = require('@sap/xsenv');
 
+
 var options = {
 	anonymous: false,
 	xsApplicationUser: false,
 	auditLog: { logToConsole: true },
-	redirectUrl: '/srv/index.xsjs'
+    redirectUrl: '/srv/index.xsjs'
 };
 
 try {
@@ -23,3 +24,6 @@ try {
 const port = process.env.PORT || 5001;
 xsjs(options).listen(port);
 console.info('Listening on http://localhost:' + port);
+
+/*var xsjsApp = xsjs(options);
+app.use(xsjsApp);*/
