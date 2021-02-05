@@ -10,6 +10,10 @@
     {
       "name": "$XSAPPNAME.Viewer1",
       "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer2",
+      "description": "Viewer"
     }
   ],
   "role-templates": [
@@ -28,6 +32,14 @@
         "uaa.user",
         "$XSAPPNAME.Viewer1"
       ]
+    },
+    {
+      "name": "Viewer2",
+      "description": "Viewer",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.Viewer2"
+      ]
     }
   ],
   "role-collections": [
@@ -36,6 +48,13 @@
       "description": "MYAPPXSJS Viewer",
       "role-template-references": [
         "$XSAPPNAME.Viewer1"
+      ]
+    },
+    {
+      "name": "MYAPPXSJS_Viewer2",
+      "description": "MYAPPXSJS Viewer",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer2"
       ]
     }
   ]

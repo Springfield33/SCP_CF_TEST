@@ -5,7 +5,7 @@
     {
       "source": "^/srv/(.*)$",
       "authenticationType": "xsuaa",
-      "scope": "$XSAPPNAME.Viewer1",
+      "scope": "$XSAPPNAME.Viewer2",
       "destination": "srv"
     },
     {
