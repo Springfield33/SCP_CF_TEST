@@ -1,8 +1,4 @@
-var conn = $.hdb.getConnection();
-var query = 'SELECT * FROM "prj_test.db::shipment"';
-var results = conn.executeQuery(query);
-conn.close();
+$.import("srv", "totem");
+const TOTEM = $.srv.totem;
 
-$.response.contentType = "text/json";
-$.response.setBody(results);
-$.response.status = $.net.http.OK;
+TOTEM.checkShipment();
