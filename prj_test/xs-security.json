@@ -14,6 +14,14 @@
     {
       "name": "$XSAPPNAME.Viewer2",
       "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer3",
+      "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer4",
+      "description": "Viewer"
     }
   ],
   "role-templates": [
@@ -40,6 +48,22 @@
         "uaa.user",
         "$XSAPPNAME.Viewer2"
       ]
+    },
+    {
+      "name": "Viewer3",
+      "description": "Viewer",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.Viewer3"
+      ]
+    },
+    {
+      "name": "Viewer4",
+      "description": "Viewer",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.Viewer4"
+      ]
     }
   ],
   "role-collections": [
@@ -55,6 +79,20 @@
       "description": "MYAPPXSJS Viewer",
       "role-template-references": [
         "$XSAPPNAME.Viewer2"
+      ]
+    },
+    {
+      "name": "MYAPPXSJS_Viewer3",
+      "description": "MYAPPXSJS Viewer",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer3"
+      ]
+    },
+    {
+      "name": "MYAPPXSJS_Viewer4",
+      "description": "MYAPPXSJS Viewer",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer4"
       ]
     }
   ]

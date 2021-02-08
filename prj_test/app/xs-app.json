@@ -3,9 +3,21 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/srv/(.*)$",
+      "source": "^/srv/totem1(.*)",
       "authenticationType": "xsuaa",
       "scope": "$XSAPPNAME.Viewer2",
+      "destination": "srv"
+    },
+    {
+      "source": "^/srv/totem2(.*)",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.Viewer3",
+      "destination": "srv"
+    },
+    {
+      "source": "^/srv/index.xsodata(.*)",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.Viewer4",
       "destination": "srv"
     },
     {

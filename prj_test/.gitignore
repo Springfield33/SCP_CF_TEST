@@ -1,8 +1,0 @@
-/mta_archives/
-/node_modules/
-/resources/
-
-# auto generated wildcard
-db/.env
-# auto generated wildcard
-prj_test/db/.env
