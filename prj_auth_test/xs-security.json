@@ -1,0 +1,41 @@
+{
+  "xsappname": "prj_auth_test",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.applicazione1",
+      "description": "applicazione1"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "applicazione1",
+      "description": "applicazione1",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.applicazione1"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "MYAPPXSJS_applicazione1",
+      "description": "MYAPPXSJS applicazione1",
+      "role-template-references": [
+        "$XSAPPNAME.applicazione1"
+      ]
+    }
+  ]
+}

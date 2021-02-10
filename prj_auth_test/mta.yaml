@@ -1,0 +1,58 @@
+_schema-version: "3.2"
+ID: prj_auth_test
+version: 0.0.1
+modules:
+- name: prj-auth-test-approuter
+  type: approuter.nodejs
+  path: prj-auth-test-approuter
+  requires:
+  - name: prj_auth_test_html_repo_runtime
+  - name: uaa_prj_auth_test
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: prj_auth_test_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: prj_auth_test_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - applicazione1-content.zip
+      name: applicazione1
+      target-path: resources/
+- name: applicazione1
+  type: html5
+  path: applicazione1
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: prj_auth_test_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: prj_auth_test_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: uaa_prj_auth_test
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: prj_auth_test-xsuaa-service
+    service-plan: application
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
