@@ -25,9 +25,21 @@ modules:
       - applicazione1-content.zip
       name: applicazione1
       target-path: resources/
+    - artifacts:
+      - applicazione2-content.zip
+      name: applicazione2
+      target-path: resources/
 - name: applicazione1
   type: html5
   path: applicazione1
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: applicazione2
+  type: html5
+  path: applicazione2
   build-parameters:
     builder: custom
     commands:

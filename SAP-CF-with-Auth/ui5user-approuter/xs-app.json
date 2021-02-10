@@ -1,0 +1,17 @@
+{
+  "authenticationMethod": "route",
+  "routes": [ {
+      "source": "^/comuserui/(.*)$",
+      "target": "$1",
+      "destination": "userui",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.auth1"
+    },
+     {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "destination": "usernode_api",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.auth1"
+    }]
+}

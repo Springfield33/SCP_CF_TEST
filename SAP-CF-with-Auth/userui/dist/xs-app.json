@@ -1,0 +1,23 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.auth1"
+    },
+    {
+      "source": "^/comuserui/(.*)$",
+      "target": "$1",
+      "destination": "userui",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.auth1"
+    }
+  ]
+}

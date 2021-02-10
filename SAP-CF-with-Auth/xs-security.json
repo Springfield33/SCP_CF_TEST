@@ -1,0 +1,41 @@
+{
+  "xsappname": "UI5user",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.auth1",
+      "description": "auth1"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "auth1",
+      "description": "auth1",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.auth1"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "MYAPPXSJS_auth1",
+      "description": "MYAPPXSJS auth1",
+      "role-template-references": [
+        "$XSAPPNAME.auth1"
+      ]
+    }
+  ]
+}

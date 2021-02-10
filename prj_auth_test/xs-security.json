@@ -10,6 +10,10 @@
     {
       "name": "$XSAPPNAME.applicazione1",
       "description": "applicazione1"
+    },
+    {
+      "name": "$XSAPPNAME.applicazione2",
+      "description": "applicazione2"
     }
   ],
   "role-templates": [
@@ -27,6 +31,14 @@
         "uaa.user",
         "$XSAPPNAME.applicazione1"
       ]
+    },
+    {
+      "name": "applicazione2",
+      "description": "applicazione2",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.applicazione2"
+      ]
     }
   ],
   "role-collections": [
@@ -35,6 +47,13 @@
       "description": "MYAPPXSJS applicazione1",
       "role-template-references": [
         "$XSAPPNAME.applicazione1"
+      ]
+    },
+    {
+      "name": "MYAPPXSJS_applicazione2",
+      "description": "MYAPPXSJS applicazione2",
+      "role-template-references": [
+        "$XSAPPNAME.applicazione2"
       ]
     }
   ]

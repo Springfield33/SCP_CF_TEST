@@ -1,0 +1,82 @@
+ID: UI5user
+_schema-version: '2.1'
+description: user UI5 app on CF
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: ui5user-approuter
+    type: approuter.nodejs
+    path: ui5user-approuter
+    parameters:
+      disk-quota: 512M
+      memory: 512M
+    requires:
+      - name: UI5user_html5_repo_runtime
+      - name: dest_userui5cf
+      - name: usernode_api
+        group: destinations
+        properties:
+          name: usernode_api
+          url: '~{url}'
+          forwardAuthToken: true
+      - name: uaa_UI5user
+  - name: UI5user_ui_deployer
+    type: com.sap.html5.application-content
+    path: UI5user_ui_deployer
+    requires:
+      - name: UI5user_html5_repo_host
+    build-parameters:
+      requires:
+        - name: userui
+          artifacts:
+            - './*'
+          target-path: resources/userui
+  - name: userui
+    type: html5
+    path: userui
+    properties:
+      UAA_SERVICE_NAME: uaa_UI5user
+    requires:
+      - name: uaa_UI5user
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: usernode
+    type: nodejs
+    path: usernode
+    provides:
+      - name: usernode_api
+        properties:
+          url: '${default-url}'
+    properties:
+      UAA_SERVICE_NAME: uaa_UI5user
+    requires:
+      - name: uaa_UI5user
+      - name: dest_userui5cf
+resources:
+  - name: UI5user_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: UI5user_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: uaa_UI5user
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_userui5cf
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

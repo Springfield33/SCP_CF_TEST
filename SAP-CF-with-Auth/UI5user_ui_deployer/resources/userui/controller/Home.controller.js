@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("com.userui.controller.Home",{onInit:function(){},onAfterRendering:function(){var e=new sap.ui.model.json.JSONModel;var o=this;$.ajax({url:"/"}).done(function(n,r,t){console.log(n);var i="Welcome "+n;e.setProperty("/user",i);o.getView().setModel(e,"menuModel")})}})});
