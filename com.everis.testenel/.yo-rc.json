@@ -1,0 +1,16 @@
+{
+  "generator-easy-ui5": {
+    "projectname": "testenel",
+    "namespace": "com.everis",
+    "platform": "Application Router @ Cloud Foundry",
+    "viewtype": "XML",
+    "viewname": "MainView",
+    "ui5libs": "Content delivery network (SAPUI5)",
+    "newdir": true,
+    "namespaceURI": "com/everis",
+    "uimodules": [
+      "uimodule"
+    ],
+    "setupCompleted": true
+  }
+}

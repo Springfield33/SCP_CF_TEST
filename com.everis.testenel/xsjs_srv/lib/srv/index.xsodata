@@ -1,0 +1,3 @@
+service namespace "db" {
+  "db::shipment" as "shipment";
+}
