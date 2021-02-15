@@ -9,7 +9,6 @@ modules:
   requires:
   - name: EnelSFG_xsuaa
   - name: EnelSFG_destination
-  - name: UITheme
   - name: urlBack
     group: destinations
     properties:
@@ -65,10 +64,5 @@ resources:
     service: hanatrial
   properties:
     hdi-container-name: ${service-name}
-- name: UITheme
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: theming
-    service-plan: standard  
 parameters:
   enable-parallel-deployments: true
