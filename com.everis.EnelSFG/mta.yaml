@@ -1,0 +1,74 @@
+_schema-version: 3.2.0
+ID: EnelSFG
+version: 0.0.1
+
+modules:
+- name: EnelSFG
+  type: nodejs
+  path: approuter
+  requires:
+  - name: EnelSFG_xsuaa
+  - name: EnelSFG_destination
+  - name: UITheme
+  - name: urlBack
+    group: destinations
+    properties:
+      name: urlBack
+      url: '~{url}'
+      forwardAuthToken: true
+  parameters:
+    disk-quota: 512M
+    memory: 512M
+  build-parameters:
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:ui --prefix ..
+
+- name: db
+  type: hdb
+  path: db
+  requires:
+  - name: hdi_db
+
+- name: xsjs_srv
+  type: nodejs
+  path: ./srv
+  requires:
+  - name: hdi_db
+  - name: EnelSFG_xsuaa
+  provides:
+  - name: urlBack
+    properties:
+      url: ${default-url}
+  parameters:
+    disk-quota: 512M
+    memory: 256M
+
+resources:
+- name: EnelSFG_destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+- name: EnelSFG_xsuaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: hdi_db
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      schema: sfg_db
+    service: hanatrial
+  properties:
+    hdi-container-name: ${service-name}
+- name: UITheme
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard  
+parameters:
+  enable-parallel-deployments: true

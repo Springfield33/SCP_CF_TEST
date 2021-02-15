@@ -1,0 +1,61 @@
+{
+  "xsappname": "prj_sfg",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.roleApp",
+      "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.roleXsjs",
+      "description": "Viewer"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user",
+        "xs_authorization.read"
+      ]
+    },
+    {
+      "name": "roleApp",
+      "description": "roleApp",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.roleApp"
+      ]
+    },
+    {
+      "name": "roleXsjs",
+      "description": "roleXsjs",
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.roleXsjs"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "MYAPPXSJS_roleApp",
+      "description": "MYAPPXSJS roleApp",
+      "role-template-references": [
+        "$XSAPPNAME.roleApp"
+      ]
+    },
+    {
+      "name": "MYAPPXSJS_roleXsjs",
+      "description": "MYAPPXSJS roleXsjs",
+      "role-template-references": [
+        "$XSAPPNAME.roleXsjs"
+      ]
+    }
+  ]
+}

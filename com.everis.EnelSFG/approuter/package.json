@@ -1,0 +1,13 @@
+{
+  "name": "EnelSFG",
+  "version": "0.0.1",
+  "engines": {
+    "node": "12.X"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@sap/approuter": "^9.0.0"
+  }
+}

@@ -1,0 +1,3 @@
+service namespace "com.everis" {
+  "com.everis::shipment" as "shipment";
+}
