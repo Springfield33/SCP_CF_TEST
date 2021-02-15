@@ -12,9 +12,9 @@ modules:
   - name: urlBack
     group: destinations
     properties:
-      name: urlBack
-      url: '~{url}'
       forwardAuthToken: true
+      name: urlBack
+      url: ~{url}
   parameters:
     disk-quota: 512M
     memory: 512M
@@ -34,8 +34,8 @@ modules:
   type: nodejs
   path: ./srv
   requires:
-  - name: hdi_db
-  - name: EnelSFG_xsuaa
+    - name: hdi_db
+    - name: EnelSFG_xsuaa
   provides:
   - name: urlBack
     properties:
