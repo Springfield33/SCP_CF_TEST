@@ -9,6 +9,7 @@ modules:
   requires:
   - name: EnelSFG_xsuaa
   - name: EnelSFG_destination
+  - name: UITheme-theming
   - name: urlBack
     group: destinations
     properties:
@@ -56,6 +57,11 @@ resources:
     path: ./xs-security.json
     service: xsuaa
     service-plan: application
+- name: UITheme-theming
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard
 - name: hdi_db
   type: com.sap.xs.hdi-container
   parameters:
